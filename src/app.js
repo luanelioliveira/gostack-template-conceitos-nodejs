@@ -22,7 +22,7 @@ function logRequests(request, response, next) {
   console.timeEnd(logLabel);
 }
 
-function validateProjectId(request, response, next) {
+function validateId(request, response, next) {
   const { id } = request.params;
 
   if (!isUuid(id)) {
@@ -33,7 +33,7 @@ function validateProjectId(request, response, next) {
 }
 
 app.use(logRequests);
-app.use("/repositories/:id", validateProjectId);
+app.use("/repositories/:id", validateId);
 
 app.get("/repositories", (request, response) => {
   return response.send(repositories);
